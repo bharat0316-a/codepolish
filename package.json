@@ -1,78 +1,103 @@
 {
-  "name": "codepolish",
-  "displayName": "codepolish",
-  "description": "Beautify on save and minify via right-click",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.102.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-  "onCommand:codepolish.beautify",
-  "onCommand:codepolish.minify"
-],
-  "main": "./out/extension.js",
-  "contributes": {
-     "commands": [
-    {
-      "command": "codepolish.beautify",
-      "title": "Beautify Code"
+    "name": "codepolish",
+    "displayName": "codepolish",
+    "publisher": "b1c836b5-b2e9-67df-b783-53ff04f83ff0",
+    "icon": "icon.jpg",
+    "description": "Beautify by pressing Alt+Shift+B and minify via right-click.",
+    "version": "0.0.3",
+    "engines": {
+        "vscode": "^1.102.0"
     },
-    {
-      "command": "codepolish.minify",
-      "title": "Minify Code"
-    }
-  ],
-   "keybindings": [
-    {
-      "command": "codepolish.beautify",
-      "key": "alt+shift+b",
-      "when": "editorTextFocus"
-    }
-  ],
-    "menus": {
-  "editor/context": [
-    {
-      "command": "codepolish.beautify",
-      "when": "editorLangId == html || editorLangId == javascript || editorLangId == css",
-      "group": "navigation"
+    "categories": [
+        "Formatters"
+    ],
+    "license": "MIT",
+    "activationEvents": [
+        "onLanguage:html",
+        "onLanguage:css",
+        "onLanguage:javascript",
+        "onLanguage:json",
+        "onLanguage:jsonl"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "codepolish.beautify",
+                "title": "Beautify Code"
+            },
+            {
+                "command": "codepolish.minify",
+                "title": "Minify Code"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "codepolish.beautify",
+                "key": "alt+shift+b",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "codepolish.minify",
+                "key": "alt+shift+m",
+                "when": "editorTextFocus"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "codepolish.beautify",
+                    "when": "editorLangId == html || editorLangId == javascript || editorLangId == css || editorLangId == json || editorLangId == jsonl",
+                    "group": "navigation"
+                },
+                {
+                    "command": "codepolish.minify",
+                    "when": "editorLangId == html || editorLangId == javascript || editorLangId == css || editorLangId == json || editorLangId == jsonl",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "languages": [
+            {
+                "id": "jsonl",
+                "extensions": [
+                    ".jsonl"
+                ],
+                "aliases": [
+                    "JSONL"
+                ]
+            }
+        ]
     },
-    {
-      "command": "codepolish.minify",
-      "when": "editorLangId == html || editorLangId == javascript || editorLangId == css",
-      "group": "navigation"
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bharat0316-a/codepolish/"
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/clean-css": "^4.2.11",
+        "@types/js-beautify": "^1.14.3",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "22.x",
+        "@types/terser": "^3.8.1",
+        "@types/vscode": "^1.102.0",
+        "@typescript-eslint/eslint-plugin": "^8.39.0",
+        "@typescript-eslint/parser": "^8.39.0",
+        "@vscode/test-cli": "^0.0.11",
+        "@vscode/test-electron": "^2.5.2",
+        "eslint": "^9.32.0",
+        "typescript": "^5.9.2"
+    },
+    "dependencies": {
+        "clean-css": "^5.3.3",
+        "js-beautify": "^1.15.4",
+        "terser": "^5.43.1"
     }
-  ]
-}
-
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/clean-css": "^4.2.11",
-    "@types/js-beautify": "^1.14.3",
-    "@types/mocha": "^10.0.10",
-    "@types/node": "22.x",
-    "@types/terser": "^3.8.1",
-    "@types/vscode": "^1.102.0",
-    "@typescript-eslint/eslint-plugin": "^8.39.0",
-    "@typescript-eslint/parser": "^8.39.0",
-    "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2",
-    "eslint": "^9.32.0",
-    "typescript": "^5.9.2"
-  },
-  "dependencies": {
-    "clean-css": "^5.3.3",
-    "js-beautify": "^1.15.4",
-    "terser": "^5.43.1"
-  }
 }
